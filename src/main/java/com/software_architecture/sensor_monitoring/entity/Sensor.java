@@ -13,4 +13,6 @@ public class Sensor {
     private String sensorID;
 
     private String sensorName;
+
+
 }

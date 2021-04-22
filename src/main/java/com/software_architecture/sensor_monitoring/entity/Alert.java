@@ -8,9 +8,5 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Alert")
 public class Alert {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long alertID;
-    private long alertMethod;
-    private long sensors;
+
 }

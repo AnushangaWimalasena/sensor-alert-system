@@ -16,4 +16,27 @@ public class SensorValues {
     private LocalDateTime date;
     private String value;
 
+    public String getSensorID() {
+        return sensorID;
+    }
+
+    public void setSensorID(String sensorID) {
+        this.sensorID = sensorID;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
 }
