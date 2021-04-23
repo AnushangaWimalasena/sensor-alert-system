@@ -9,4 +9,9 @@ import javax.persistence.*;
 @Table(name = "Alert")
 public class Alert {
 
+    @Id
+    private String alertID;
+
+    @ManyToOne
+    private Sensor sensor;
 }

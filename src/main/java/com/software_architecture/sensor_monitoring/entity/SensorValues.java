@@ -1,9 +1,7 @@
 package com.software_architecture.sensor_monitoring.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -11,17 +9,23 @@ import java.time.LocalDateTime;
 public class SensorValues {
 
     @Id
-    private String sensorID;
+    private String sensorValueID;
 
     private LocalDateTime date;
     private String value;
 
-    public String getSensorID() {
-        return sensorID;
+    @ManyToOne
+    @JoinColumn(name = "sensorID")
+    private Sensor sensor;
+
+
+
+    public String getSensorValueID() {
+        return sensorValueID;
     }
 
-    public void setSensorID(String sensorID) {
-        this.sensorID = sensorID;
+    public void setSensorValueID(String sensorID) {
+        this.sensorValueID = sensorID;
     }
 
     public LocalDateTime getDate() {
@@ -38,5 +42,13 @@ public class SensorValues {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public Sensor getSensor() {
+        return sensor;
+    }
+
+    public void setSensor(Sensor sensor) {
+        this.sensor = sensor;
     }
 }

@@ -2,6 +2,7 @@ package com.software_architecture.sensor_monitoring.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.util.List;
 
@@ -14,4 +15,6 @@ public class User {
     private String email;
     private String contactNo;
 
+    @OneToMany(mappedBy = "user")
+    private List<Sensor> sensors;
 }

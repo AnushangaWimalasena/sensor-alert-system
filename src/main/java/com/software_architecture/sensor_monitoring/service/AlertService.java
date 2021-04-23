@@ -1,8 +1,10 @@
 package com.software_architecture.sensor_monitoring.service;
 
 import com.software_architecture.sensor_monitoring.AlertGen.Logic.Logic;
-import com.software_architecture.sensor_monitoring.AlertGen.Logic.LogicFactory;
 import com.software_architecture.sensor_monitoring.AlertGen.Logic.LogicSelect;
+import com.software_architecture.sensor_monitoring.AlertGen.Notification.EmailNotification;
+import com.software_architecture.sensor_monitoring.AlertGen.Notification.PhoneCallNotification;
+import com.software_architecture.sensor_monitoring.AlertGen.Notification.SMSNotification;
 import com.software_architecture.sensor_monitoring.entity.SensorValues;
 import com.software_architecture.sensor_monitoring.repository.AlertRepository;
 import com.software_architecture.sensor_monitoring.repository.SensorRepository;
@@ -30,12 +32,23 @@ public class AlertService {
     @Autowired
     AlertRepository alertRepository;
 
+    @Autowired
+    EmailNotification emailNotification;
+
+    @Autowired
+    PhoneCallNotification phoneCallNotification;
+
+    @Autowired
+    SMSNotification smsNotification;
 
     public ResponseEntity validateSensorData(SensorValues sensorValues){
-        Logic logic = logicSelect.selectLogicName(sensorValues.getSensorID());
+        Logic logic = logicSelect.selectLogicName(sensorValues.getSensorValueID());
 
         try{
             if(logic.select(sensorValues.getValue())){
+                emailNotification.notifyToUser();
+                phoneCallNotification.notifyToUser();
+                smsNotification.notifyToUser();
                 alertRepository.save(sensorValues);
             }
            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
