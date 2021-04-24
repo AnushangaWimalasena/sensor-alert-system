@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PhoneCallNotification implements Notification {
     @Override
-    public void notifyToUser() {
+    public void notifyToUser(String contact) {
         System.out.println("Phone Call will be send to user");
     }
 }

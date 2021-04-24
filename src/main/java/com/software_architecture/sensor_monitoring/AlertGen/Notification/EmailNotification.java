@@ -18,9 +18,9 @@ public class EmailNotification implements Notification{
     private JavaMailSender javaMailSender;
 
     @Override
-    public void notifyToUser() throws MailException {
+    public void notifyToUser(String mail) throws MailException {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo();
+        mailMessage.setTo(mail);
         mailMessage.setSubject("Critical Sensor Reading Warning");
         mailMessage.setText("Please take actions");
 

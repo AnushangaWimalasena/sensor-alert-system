@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SMSNotification implements Notification {
     @Override
-    public void notifyToUser() {
+    public void notifyToUser(String contact) {
         System.out.println("SMS will be send to user");
     }
 }
