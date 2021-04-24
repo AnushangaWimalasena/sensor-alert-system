@@ -1,20 +1,54 @@
 package com.software_architecture.sensor_monitoring.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import java.util.List;
-
-@Entity
+import java.util.UUID;
 public class User {
-
-    @Id
-    private String userID;
+    private UUID userId;
+    private UUID alertMethod;
     private String name;
-    private String email;
-    private String contactNo;
+    private String password;
 
-    @OneToMany(mappedBy = "user")
-    private List<Sensor> sensors;
+    public User(UUID userId) {
+        this.userId = userId;
+    }
+
+    public User(UUID userId, UUID alertMethod, String name, String password) {
+        this.userId = userId;
+        this.alertMethod = alertMethod;
+        this.name = name;
+        this.password = password;
+    }
+
+    public UUID getUserId() {
+        return userId;
+    }
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
+    }
+
+    public UUID getAlertMethod() {
+        return alertMethod;
+    }
+
+    public void setAlertMethod(UUID alertMethod) {
+        this.alertMethod = alertMethod;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
 }
