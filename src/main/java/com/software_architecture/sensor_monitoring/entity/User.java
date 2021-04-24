@@ -1,8 +1,6 @@
 package com.software_architecture.sensor_monitoring.entity;
 
-import javax.persistence.Entity;
 import java.util.UUID;
-
 public class User {
     private UUID userId;
     private UUID alertMethod;
@@ -51,4 +49,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }
