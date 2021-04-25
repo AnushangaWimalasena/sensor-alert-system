@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-
+import { Routes, RouterModule } from '@angular/router';
+import {page} from './page/page.component';
+import {account} from './account/account.component';
 const routes: Routes = [];
 
 @NgModule({
@@ -8,3 +9,7 @@ const routes: Routes = [];
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+const routes: Routes = [
+  { path: 'page', component: page },
+  { path: 'account', component: account },
+];

@@ -58,13 +58,20 @@
 						<input type="text" Username="name" placeholder="Username *">
 						<input type="text" Password="email" placeholder="Password *">
 						
-						<input type="submit" id="submit" class="clearfix btn" value="Login">
+						<input type="submit" id="submit"  class="clearfix btn" value="Login">
 					</div>
 				</form>
 				<div class="done">
 					<div class="alert alert-success">
-						<button type="button" class="close" data-dismiss="alert">×</button>
-						Logged in. Thank you!
+						<form action="../components/account/account.component.html">
+							<button id="myButton" type="button" onclick="" class="close" routerLink="/account" data-dismiss="alert">×</button>
+							Logged in. Thank you!
+						</form>
+						<script type="text/javascript">
+							document.getElementById("myButton").onclick = function () {
+								location.href = "../components/account/account.component.html";
+							};
+						</script>
 					</div>
 				</div>
 			</div>								
