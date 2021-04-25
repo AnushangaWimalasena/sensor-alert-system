@@ -1,24 +1,40 @@
 package com.software_architecture.sensor_monitoring.entity;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.UUID;
 
+@Component
+@Entity
+@Table(name = "Users")
 public class User {
+
+    @Id
     private UUID userId;
-    private UUID alertMethod;
+    private String alertMethod;
     private String name;
     private String password;
+    private String email;
+    private String mobileNo;
+
+
+    public User(UUID userId, String alertMethod, String name, String password, String email, String mobileNo) {
+        this.userId = userId;
+        this.alertMethod = alertMethod;
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.mobileNo = mobileNo;
+    }
 
     public User(UUID userId) {
         this.userId = userId;
     }
 
-    public User(UUID userId, UUID alertMethod, String name, String password) {
-        this.userId = userId;
-        this.alertMethod = alertMethod;
-        this.name = name;
-        this.password = password;
-    }
+    public User(){}
 
     public UUID getUserId() {
         return userId;
@@ -28,11 +44,11 @@ public class User {
         this.userId = userId;
     }
 
-    public UUID getAlertMethod() {
+    public String getAlertMethod() {
         return alertMethod;
     }
 
-    public void setAlertMethod(UUID alertMethod) {
+    public void setAlertMethod(String alertMethod) {
         this.alertMethod = alertMethod;
     }
 
@@ -50,5 +66,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMobileNo() {
+        return mobileNo;
+    }
+
+    public void setMobileNo(String mobileNo) {
+        this.mobileNo = mobileNo;
     }
 }
