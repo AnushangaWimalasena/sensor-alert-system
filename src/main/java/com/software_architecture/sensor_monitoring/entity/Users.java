@@ -1,40 +1,51 @@
 package com.software_architecture.sensor_monitoring.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Component
 @Entity
 @Table(name = "Users")
-public class User {
+public class Users {
 
     @Id
     private UUID userId;
-    private String alertMethod;
+
+    @ManyToMany()
+    @JsonIgnoreProperties(value = {"alert", "users"})
+    private List<AlertMethod> alertMethod;
     private String name;
     private String password;
     private String email;
     private String mobileNo;
 
+    @OneToMany(mappedBy = "users")
+    @JsonIgnoreProperties(value = {"alerts","user","sensorValues"})
+    private List<Sensor> sensors;
 
-    public User(UUID userId, String alertMethod, String name, String password, String email, String mobileNo) {
-        this.userId = userId;
+    public Users(){}
+
+    public Users(List<AlertMethod> alertMethod, String name, String password, String email, String mobileNo) {
+        this.userId = UUID.randomUUID();
         this.alertMethod = alertMethod;
         this.name = name;
         this.password = password;
         this.email = email;
         this.mobileNo = mobileNo;
     }
-
-    public User(UUID userId) {
-        this.userId = userId;
+    public Users(List<AlertMethod> alertMethod, String name, String password, String email, String mobileNo, List<Sensor> sensors) {
+        this.userId = UUID.randomUUID();
+        this.alertMethod = alertMethod;
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.mobileNo = mobileNo;
+        this.sensors = sensors;
     }
-
-    public User(){}
 
     public UUID getUserId() {
         return userId;
@@ -44,11 +55,11 @@ public class User {
         this.userId = userId;
     }
 
-    public String getAlertMethod() {
+    public List<AlertMethod> getAlertMethod() {
         return alertMethod;
     }
 
-    public void setAlertMethod(String alertMethod) {
+    public void setAlertMethod(List<AlertMethod> alertMethod) {
         this.alertMethod = alertMethod;
     }
 
@@ -82,5 +93,13 @@ public class User {
 
     public void setMobileNo(String mobileNo) {
         this.mobileNo = mobileNo;
+    }
+
+    public List<Sensor> getSensors() {
+        return sensors;
+    }
+
+    public void setSensors(List<Sensor> sensors) {
+        this.sensors = sensors;
     }
 }

@@ -15,10 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
+@RequestMapping("/alerts")
 public class AlertController {
 
+    private AlertService alertService;
+
     @Autowired
-    AlertService alertService;
+    public AlertController(AlertService alertService) {
+        this.alertService = alertService;
+    }
 
     @PostMapping("/data")
     public ResponseEntity getSensorData(@RequestBody SensorValues sensorValues){

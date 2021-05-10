@@ -1,13 +1,13 @@
 package com.software_architecture.sensor_monitoring.repository;
 
-import com.software_architecture.sensor_monitoring.entity.User;
-import org.springframework.data.domain.Example;
+import com.software_architecture.sensor_monitoring.entity.Users;
+import com.software_architecture.sensor_monitoring.repository.CustomDAO.UserDao;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 
-public interface UserRepository extends JpaRepository<User, String> {
-
-    
+public interface UserRepository extends JpaRepository<Users, UUID> {
+    Users findByEmail(String email);
+    Users findByName(String name);
+    Users findUsersByEmail(String email);
 }

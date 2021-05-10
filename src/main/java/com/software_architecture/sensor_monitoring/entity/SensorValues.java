@@ -1,6 +1,8 @@
 package com.software_architecture.sensor_monitoring.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -12,13 +14,24 @@ public class SensorValues {
     private String sensorValueID;
 
     private LocalDateTime date;
-    private String value;
 
-    @ManyToOne
+    private String data_value;
+
+    @ManyToOne()
     @JoinColumn(name = "sensorID")
+    @JsonIgnoreProperties(value = {"alerts"})
     private Sensor sensor;
 
+    public SensorValues() {
+    }
 
+
+    public SensorValues(LocalDateTime date, String data_value, Sensor sensor) {
+        this.sensorValueID = sensor.getSensorID().toString() + LocalDateTime.now().toString();
+        this.date = date;
+        this.data_value = data_value;
+        this.sensor = sensor;
+    }
 
     public String getSensorValueID() {
         return sensorValueID;
@@ -36,12 +49,12 @@ public class SensorValues {
         this.date = date;
     }
 
-    public String getValue() {
-        return value;
+    public String getData_value() {
+        return data_value;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setData_value(String value) {
+        this.data_value = value;
     }
 
     public Sensor getSensor() {

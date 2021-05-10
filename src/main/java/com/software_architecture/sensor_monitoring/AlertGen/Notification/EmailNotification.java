@@ -14,16 +14,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class EmailNotification implements Notification{
 
-    @Autowired
-    private JavaMailSender javaMailSender;
+//    @Autowired
+//    private JavaMailSender javaMailSender;
 
     @Override
     public void notifyToUser(String mail) throws MailException {
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo(mail);
-        mailMessage.setSubject("Critical Sensor Reading Warning");
-        mailMessage.setText("Please take actions");
-
-        javaMailSender.send(mailMessage);
+//        SimpleMailMessage mailMessage = new SimpleMailMessage();
+//        mailMessage.setTo(mail);
+//        mailMessage.setSubject("Critical Sensor Reading Warning");
+//        mailMessage.setText("Please take actions");
+//
+//        javaMailSender.send(mailMessage);
+        System.out.println("Mail send to user");
     }
 }
